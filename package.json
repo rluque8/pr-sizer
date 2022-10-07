@@ -1,12 +1,19 @@
 {
   "name": "pr-sizer",
-  "version": "1.0.0",
-  "description": "Github action in charge of labeling with t-shirt sizing the PRs based on the number of lines modified (added, updated and deleted)",
+  "private": true,
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": ["pr", "labeler"],
   "author": "Rodrigo Luque",
-  "license": "ISC"
+  "license": "ISC",
+  "scripts": {
+    "start": "node ./index.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "actions-toolkit": "^6.0.1",
+    "dotenv": "^16.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.24.0",
+    "jest": "^26.0.1"
+  }
 }
