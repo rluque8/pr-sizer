@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Size PRs with labels
     steps:
-      - uses: pr-sizer/.github/workflows/pr-sizer.yml
+      - uses: actions/checkout@feature/add-functioning-logic
         with:
           size_s: '40'
           size_m: '200'
