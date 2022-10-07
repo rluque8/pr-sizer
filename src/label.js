@@ -92,8 +92,8 @@ async function removeLabel(tools, labelName) {
     }
 };
 
-function getLabelConfig(tools) {
-    return LABEL_CONFIG(tools);
+function getLabelConfig(inputs) {
+    return LABEL_CONFIG(inputs);
 };
 
 async function assignLabelBasedOnLineChanges(tools, lines, labelsConfig) {
