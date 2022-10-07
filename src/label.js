@@ -1,5 +1,22 @@
 const { LABEL_CONFIG } = require("./config");
 
+async function addLabel(tools, labelName) {
+    if (await isLabelAdded(tools, labelName)) {
+      return;
+    }
+  
+    try {
+      tools.log.info(`Adding the label "${labelName}"`);
+      await tools.github.issues.addLabels({
+        ...tools.context.repo,
+        issue_number: tools.context.issue.issue_number,
+        labels: [labelName],
+      });
+    } catch (error) {
+      tools.log.info(`Error happens when we was adding the label: ${error}`);
+    }
+  };
+
 async function createLabelsIfNotExists(tools, labelConfig) {
     for (let { name, color } of labelConfig) {
         await createLabelIfNotExists(tools, name, { color });
@@ -101,5 +118,6 @@ module.exports = {
     isLabelAdded,
     removeLabel,
     getLabelConfig,
-    assignLabelBasedOnLineChanges
+    assignLabelBasedOnLineChanges,
+    addLabel
 };
