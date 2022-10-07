@@ -1,0 +1,16 @@
+name: 'PR Sizer'
+on: pull_request
+jobs:
+  pr-labeler:
+    runs-on: ubuntu-latest
+    name: Size PRs with labels
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./
+        with:
+          size_s: '40'
+          size_m: '200'
+          size_l: '600'
+          size_xl: '1000'
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

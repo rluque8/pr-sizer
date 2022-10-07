@@ -6,32 +6,32 @@ const LABEL_SIZES = {
 };
 
 const LABEL_COLORS = {
-    S: 'size_s',
-    M: 'size_m',
-    L: 'size_l',
-    XL: 'size_xl'
+    S: '12c800',
+    M: 'b3c800',
+    L: 'c87300',
+    XL: 'c80000'
 };
 
 const LABEL_CONFIG = (tools) => [
     {
-        name: 'size_s',
-        size: tools.inputs.s_max_size,
-        color: '12c800',
+        name: LABEL_SIZES.S,
+        size: tools.inputs.size_s,
+        color: LABEL_COLORS.S,
     },
     {
-        name: 'size_m',
-        size: tools.inputs.m_max_size,
-        color: 'b3c800',
+        name: LABEL_SIZES.M,
+        size: tools.inputs.size_m,
+        color: LABEL_COLORS.M,
     },
     {
-        name: 'size_l',
-        size: tools.inputs.l_max_size,
-        color: 'c87300',
+        name: LABEL_SIZES.L,
+        size: tools.inputs.size_l,
+        color: LABEL_COLORS.L,
     },
     {
-        name: 'size_xl',
-        size: tools.inputs.xl_max_size,
-        color: 'c80000',
+        name: LABEL_SIZES.XL,
+        size: tools.inputs.size_xl,
+        color: LABEL_COLORS.XL,
     },
 ];
 
