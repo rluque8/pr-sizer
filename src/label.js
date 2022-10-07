@@ -1,18 +1,17 @@
 const { LABEL_CONFIG } = require("./config");
 
 async function createLabelsIfNotExists(tools, labelConfig) {
-    await Promise.all(
-        labelConfig.map((item) =>
-            createLabelIfNotExists(tools, item.name, { color: item.color }),
-        ),
-    );
+    for (let { name, color } of labelConfig) {
+        await createLabelIfNotExists(tools, name, { color });
+    }
 };
 
 async function createLabelIfNotExists(tools, labelName, options = {}) {
-    const existsLabelToCreate = await existsLabel(tools, labelName);
-    if (existsLabelToCreate) {
+    const alreadyExistsLabelToCreate = await checkIfLabelExists(tools, labelName);
+    if (alreadyExistsLabelToCreate) {
         return;
     }
+
     try {
         tools.log.info(`Creating the label: ${labelName}`);
         await tools.github.issues.createLabel({
@@ -22,7 +21,7 @@ async function createLabelIfNotExists(tools, labelName, options = {}) {
             request: { retries: 0 },
         });
     } catch (error) {
-        tools.log.info(`Error while creating the label: ${error.message}`);
+        tools.log.fatal(`Error while creating the label: ${error.message}`);
     }
 };
 
@@ -36,7 +35,7 @@ async function checkIfLabelExists(tools, labelName) {
 
         return repositoryLabels.find(label => label.name === labelName);
     } catch (error) {
-        tools.log.info(`Error checking repo labels: ${error.message}`);
+        tools.log.fatal(`Error checking repo labels: ${error.message}`);
         return false;
     }
 };
@@ -52,7 +51,7 @@ async function isLabelAdded(tools, labelName) {
 
         return labelsOnIssue.find(labelOnIssue => labelOnIssue.name === labelName);
     } catch (error) {
-        tools.log.info(
+        tools.log.fatal(
             `Error while checking if the label "${labelName}" was added to the repository: ${error.message}`,
         );
         return false;
@@ -72,7 +71,7 @@ async function removeLabel(tools, labelName) {
             name: labelName,
         });
     } catch (error) {
-        tools.log.info(`Error while removing the label "${labelName}": ${error.message}`);
+        tools.log.fatal(`Error while removing the label "${labelName}": ${error.message}`);
     }
 };
 
@@ -80,11 +79,27 @@ function getLabelConfig(tools) {
     return LABEL_CONFIG(tools);
 };
 
+async function assignLabelBasedOnLineChanges(tools, lines, labelsConfig) {
+    for (let { name } of labelsConfig) {
+        if (await checkIfLabelExists(tools, name)) {
+            await removeLabel(tools, name);
+        }
+    }
+
+    // Find the label adequate for the number of line changes
+    const element = labelsConfig.find((elem) => lines <= elem.size);
+    if (element) {
+        await addLabel(tools, element.name);
+    }
+};
+
+
 module.exports = {
     createLabelsIfNotExists,
     createLabelIfNotExists,
     checkIfLabelExists,
     isLabelAdded,
     removeLabel,
-    getLabelConfig
+    getLabelConfig,
+    assignLabelBasedOnLineChanges
 };

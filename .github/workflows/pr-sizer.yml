@@ -1,0 +1,17 @@
+name: 'PR Sizer'
+on: [pull_request]
+description: 'Github action in charge of labeling with t-shirt sizing the PRs based on the number of lines modified (added, updated and deleted)'
+jobs:
+  pr-labeler:
+    runs-on: ubuntu-latest
+    name: PR sizer
+    using: 'node18'
+    steps:
+      - uses: pr-sizer@v1.0.0
+        with:
+          s_max_size: '40'
+          m_max_size: '200'
+          l_max_size: '600'
+          xl_max_size: '1000'
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

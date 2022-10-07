@@ -2,7 +2,9 @@
   "name": "pr-sizer",
   "private": true,
   "main": "index.js",
+  "version": "1.0.0",
   "author": "Rodrigo Luque",
+  "description": "Github action in charge of labeling with t-shirt sizing the PRs based on the number of lines modified (added, updated and deleted)",
   "license": "ISC",
   "scripts": {
     "start": "node ./index.js",
