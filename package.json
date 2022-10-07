@@ -1,0 +1,12 @@
+{
+  "name": "pr-sizer",
+  "version": "1.0.0",
+  "description": "Github action in charge of labeling with t-shirt sizing the PRs based on the number of lines modified (added, updated and deleted)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["pr", "labeler"],
+  "author": "Rodrigo Luque",
+  "license": "ISC"
+}
