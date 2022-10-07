@@ -45,7 +45,7 @@ async function isLabelAdded(tools, labelName) {
         const { data: labelsOnIssue } = await tools.github.issues.listLabelsOnIssue(
             {
                 ...tools.context.repo,
-                issue_number: tools.context.issue.number,
+                issue_number: tools.context.issue.issue_number,
             },
         );
 
@@ -59,7 +59,7 @@ async function isLabelAdded(tools, labelName) {
 };
 
 async function removeLabel(tools, labelName) {
-    if (!(await isAddedLabel(tools, labelName))) {
+    if (!(await isLabelAdded(tools, labelName))) {
         tools.log.info(`The label "${labelName}" was not in the issue, we don't need to remove it`);
         return;
     }
@@ -67,7 +67,7 @@ async function removeLabel(tools, labelName) {
         tools.log.info(`Removing the label "${labelName}"`);
         await tools.github.issues.removeLabel({
             ...tools.context.repo,
-            issue_number: tools.context.issue.number,
+            issue_number: tools.context.issue.issue_number,
             name: labelName,
         });
     } catch (error) {
