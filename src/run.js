@@ -5,7 +5,9 @@ const {
 } = require("./label");
 
 async function run(tools) {
-    const labelsConfig = getLabelConfig(tools);
+    const { inputs } = tools;
+
+    const labelsConfig = getLabelConfig(inputs);
     await createLabelsIfNotExists(tools, labelsConfig);
 
     const lines = await getLinesChanged(tools);

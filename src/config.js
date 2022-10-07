@@ -12,25 +12,25 @@ const LABEL_COLORS = {
     XL: 'c80000'
 };
 
-const LABEL_CONFIG = (tools) => [
+const LABEL_CONFIG = (inputs) => [
     {
         name: LABEL_SIZES.S,
-        size: tools.inputs.size_s,
+        size: inputs.size_s,
         color: LABEL_COLORS.S,
     },
     {
         name: LABEL_SIZES.M,
-        size: tools.inputs.size_m,
+        size: inputs.size_m,
         color: LABEL_COLORS.M,
     },
     {
         name: LABEL_SIZES.L,
-        size: tools.inputs.size_l,
+        size: inputs.size_l,
         color: LABEL_COLORS.L,
     },
     {
         name: LABEL_SIZES.XL,
-        size: tools.inputs.size_xl,
+        size: inputs.size_xl,
         color: LABEL_COLORS.XL,
     },
 ];
