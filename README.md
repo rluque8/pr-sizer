@@ -20,10 +20,10 @@ jobs:
     steps:
       - uses: actions/checkout@v1
         with:
-          s_max_size: '40'
-          m_max_size: '200'
-          l_max_size: '600'
-          xl_max_size: '1000'
+          size_s: '40'
+          size_m: '200'
+          size_l: '600'
+          size_xl: '1000'
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
