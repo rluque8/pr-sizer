@@ -7,7 +7,7 @@ jobs:
     name: PR sizer
     using: 'node18'
     steps:
-      - uses: pr-sizer@v1.0.0
+      - uses: actions/checkout@v1.0.0
         with:
           s_max_size: '40'
           m_max_size: '200'
