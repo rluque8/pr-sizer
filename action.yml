@@ -1,8 +1,31 @@
-name: pr-sizer
-description: Github action in charge of labeling with t-shirt sizing the PRs based on the number of lines modified (added, updated and deleted)
+name: 'PR Sizer'
+description: 'Github action in charge of labeling with t-shirt sizing the PRs based on the number of lines modified (added, updated and deleted)'
+inputs:
+  GITHUB_TOKEN:
+    description: 'GitHub token'
+    required: true
+  s_max_size:
+    description: 'Maximum number of lines for a XL size'
+    required: true
+  m_max_size:
+    description: 'Maximum number of lines for a XL size'
+    required: true
+    default: '500'
+  l_max_size:
+    description: 'Maximum number of lines for a XL size'
+    required: true
+  xl_max_size:
+    description: 'Maximum number of lines for a XL size'
+    required: true
 runs:
-  using: docker
-  image: Dockerfile
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.GITHUB_TOKEN }}
+    - ${{ inputs.s_max_size }}
+    - ${{ inputs.m_max_size }}
+    - ${{ inputs.l_max_size }}
+    - ${{ inputs.xl_max_size }}
 branding:
   icon: activity
   color: blue

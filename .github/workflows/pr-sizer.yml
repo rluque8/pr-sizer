@@ -1,5 +1,5 @@
 name: 'PR Sizer'
-on: [pull_request]
+on: pull_request
 jobs:
   pr-labeler:
     runs-on: ubuntu-latest
