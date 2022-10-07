@@ -5,7 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Size PRs with labels
     steps:
-      - uses: actions/checkout@feature/add-functioning-logic
+      - uses: actions/checkout@v3
+      - uses: ./
         with:
           size_s: '40'
           size_m: '200'
