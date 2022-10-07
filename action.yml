@@ -4,17 +4,17 @@ inputs:
   GITHUB_TOKEN:
     description: 'GitHub token'
     required: true
-  s_max_size:
-    description: 'Maximum number of lines for a XL size'
+  size_s:
+    description: 'Maximum number of lines for a S size'
     required: true
-  m_max_size:
-    description: 'Maximum number of lines for a XL size'
+  size_m:
+    description: 'Maximum number of lines for a M size'
     required: true
     default: '500'
-  l_max_size:
-    description: 'Maximum number of lines for a XL size'
+  size_l:
+    description: 'Maximum number of lines for a L size'
     required: true
-  xl_max_size:
+  size_xl:
     description: 'Maximum number of lines for a XL size'
     required: true
 runs:
@@ -22,10 +22,10 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.GITHUB_TOKEN }}
-    - ${{ inputs.s_max_size }}
-    - ${{ inputs.m_max_size }}
-    - ${{ inputs.l_max_size }}
-    - ${{ inputs.xl_max_size }}
+    - ${{ inputs.size_s }}
+    - ${{ inputs.size_m }}
+    - ${{ inputs.size_l }}
+    - ${{ inputs.size_xl }}
 branding:
   icon: activity
   color: blue
